@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var email = "Enter your email" // Store the email
+    let customColor = Color(red: 77/255, green: 182/255, blue: 172/255)
     var body: some View {
         ZStack{
             Color(.black)
@@ -27,7 +28,7 @@ struct ContentView: View {
                         .fontDesign(.rounded)
                     VStack{
                         TextField("Enter your email", text: $email)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.gray.opacity(0.5))
                             .padding(10)
                             .frame(width: 350)
                             .overlay(
@@ -35,79 +36,136 @@ struct ContentView: View {
                                     .stroke(Color.gray, lineWidth: 2)
                             )
                             .padding()
-                        Button(action: {
-                            print("Go with email")
-                        }, label: {
-                            Text("Go")
-                                .foregroundColor(Color.white)
-                                .background(Color(red: 0xBE / 0xFF, green: 0xE6 / 0xFF, blue: 0xCF / 0xFF))
-                                .padding()
-                                .cornerRadius(23)
-                        })
+                        
+                        Button(action:{
+                            print("Signed with Email")
+                        }){
+                            HStack{
+                                Text("Go")
+                                    .foregroundColor(.white)
+                                    .fontWeight(.semibold)
+                            }
+                            .padding()
+                            .frame(width: 350, height: 45)
+                            .background(customColor)
+                            .cornerRadius(30)
+                            .onTapGesture {
+                                print("Signed with Email")
+                            }
+                        }
+                        
+                        
+                        Button("Use Phone") {
+                            print("Changed to phone")
+                        }
+                        .padding()
+                        .foregroundColor(.white)
+                        .font(.callout)
+                    }
+                }
+
+                
+                HStack(spacing:20){
+                    Color.white
+                        .frame(height: 0.5)
+                        .padding(.bottom)
+                        .padding(.top)
+                    Text("Or")
+                        .foregroundColor(.gray)
+                    Color.white
+                        .frame(height: 1)
+                        .padding(.bottom)
+                        .padding(.top)
+                }
+                .frame(width: 350)
+                .padding(.bottom)
+                .padding(.top)
+                
+                // Google SignIn:
+                Button(action: {
+                    print("Google sign In")
+                }){
+                    HStack{
+                        Spacer()
+                        Image("google")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 23)
+                            .padding(.horizontal)
+                        Text("Continue with Google")
+                            .foregroundColor(.black)
+                        Spacer()
+                    }
+                    .padding()
+                    .frame(width: 350, height: 45)
+                    .background(Color.white)
+                    .cornerRadius(30)
+                    .onTapGesture {
+                        print("Signed with Google")
+                    }
+                    
+                }
+                // Github SignIn:
+                Button(action:{
+                    print("Signed with Github")
+                }){
+                    HStack{
+                        Spacer()
+                        Image("github")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .padding(.horizontal)
+                            .frame(height: 23)
+                        Text("Continue with Github")
+                            .foregroundColor(.black)
+                        Spacer()
+                    }
+                    .padding()
+                    .frame(width: 350, height: 45)
+                    .background(Color.white)
+                    .cornerRadius(30)
+                    .onTapGesture {
+                        print("Signed with Github")
                     }
                 }
                 
-                // Google SignIn:
-                HStack{
-                    Spacer()
-                    Image("google")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 23)
-                        .padding(.horizontal)
-                    Text("Continue with Google")
-                        .foregroundColor(.black)
-                    Spacer()
-                }
-                .padding()
-                .frame(width: 350)
-                .background(Color.white)
-                .cornerRadius(30)
-                
-                // Github SignIn:
-                HStack{
-                    Spacer()
-                    Image("github")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .padding(.horizontal)
-                        .frame(height: 23)
-                    Text("Continue with Github")
-                        .foregroundColor(.black)
-                    Spacer()
-                }
-                .padding()
-                .frame(width: 350)
-                .background(Color.white)
-                .cornerRadius(30)
-                
                 // Apple SignIn:
-                HStack{
-                    Spacer()
-                    Image("apple")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 23)
-                        .padding(.horizontal)
-                    Text("Continue with Apple")
-                        .foregroundColor(.black)
-                    Spacer()
+                Button(action:{
+                    print("Signed with Apple")
+                }){
+                    HStack{
+                        Spacer()
+                        Image("apple")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 23)
+                            .padding(.horizontal)
+                        Text("Continue with Apple")
+                            .foregroundColor(.black)
+                        Spacer()
+                    }
+                    .padding()
+                    .frame(width: 350, height: 45)
+                    .background(Color.white)
+                    .cornerRadius(30)
+                    .onTapGesture {
+                        print("Signed with Apple")
+                    }
                 }
-                .padding()
-                .frame(width: 350)
-                .background(Color.white)
-                .cornerRadius(30)
                 
                 
                 
                 // Terms and Services, privacy Policy
                 HStack(alignment: .top, spacing: 0){
-                    Text("By continuing, you are agreeing to Sage's Terms of Service and Privacy Policy.")
+                    Text("By continuing, you are agreeing to Sage's [Terms of Service](https://www.google.com) and [Privacy Policy](https://www.google.com).")
                         .foregroundColor(.gray)
+                        .font(.footnote)
                 }
-                .padding()
+                .padding(20)
+                .padding(.top)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
+                .font(.footnote)
                 
                 
             }
