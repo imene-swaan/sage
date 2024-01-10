@@ -9,7 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var email = "Enter your email" // Store the email
+    @State private var phone = "Enter your phone number" // Store the email
+    @State private var isLayoutEmail = true
+    @State private var selectedCountryCode = "+1"
+    @State private var phoneNumber = "Phone Number"
+    @State private var showingPicker = false
+
+    let countries = [
+        (code: "+1", flag: "us"),
+        (code: "+44", flag: "fr"),
+        (code: "+49", flag: "de")
+        // Add all countries you need
+    ]
     let customColor = Color(red: 77/255, green: 182/255, blue: 172/255)
+    
     var body: some View {
         ZStack{
             Color(.black)
@@ -27,15 +40,19 @@ struct ContentView: View {
                         .font(.custom("Helvetica Neue", size: 24))
                         .fontDesign(.rounded)
                     VStack{
-                        TextField("Enter your email", text: $email)
-                            .foregroundColor(.gray.opacity(0.5))
-                            .padding(10)
-                            .frame(width: 350)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.gray, lineWidth: 2)
-                            )
-                            .padding()
+                        if isLayoutEmail {
+                            TextField("Enter your email", text: $email)
+                                .foregroundColor(.gray.opacity(0.5))
+                                .padding(10)
+                                .frame(width: 350)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.gray, lineWidth: 2)
+                                )
+                                .padding()
+                        } else {
+                            CountryCodePickerView(selectedCountryCode: $selectedCountryCode, phoneNumber: $phoneNumber, countries: countries)
+                        }
                         
                         Button(action:{
                             print("Signed with Email")
@@ -55,12 +72,23 @@ struct ContentView: View {
                         }
                         
                         
-                        Button("Use Phone") {
-                            print("Changed to phone")
+                        if isLayoutEmail {
+                            Button("Use Phone") {
+                                print("Changed to phone")
+                                isLayoutEmail.toggle()
+                            }
+                            .padding()
+                            .foregroundColor(.white)
+                            .font(.callout)
+                        } else {
+                            Button("Use Email") {
+                                print("Changed to email")
+                                isLayoutEmail.toggle()
+                            }
+                            .padding()
+                            .foregroundColor(.white)
+                            .font(.callout)
                         }
-                        .padding()
-                        .foregroundColor(.white)
-                        .font(.callout)
                     }
                 }
 
