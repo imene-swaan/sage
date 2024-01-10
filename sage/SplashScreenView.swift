@@ -18,6 +18,7 @@ struct SplashScreenView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity) // Fill the entire screen
         .background(Color(red: 0xBE / 0xFF, green: 0xE6 / 0xFF, blue: 0xCF / 0xFF)) // Hex color background
         .edgesIgnoringSafeArea(.all) // Ignore safe area to cover the whole screen
+           
     }
 }
 
