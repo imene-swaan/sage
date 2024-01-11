@@ -1,2 +1,0 @@
-# sage
-our dumb app
