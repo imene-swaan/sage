@@ -8,8 +8,38 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var authManager: AuthenticationManager
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView {
+            NavigationView {
+                LoginBtnView(placeholder: "Sign Out", action: {
+                    authManager.signOut()
+                })
+                .navigationTitle("Home")
+            }
+            .tabItem {
+                Label("Home", systemImage: "house.fill")
+            }
+            NavigationView {
+                LoginBtnView(placeholder: "Sign Out", action: {
+                    authManager.signOut()
+                })
+                .navigationTitle("Notifications")
+            }
+            .tabItem {
+                Label("Notifications", systemImage: "bell.fill")
+            }
+            NavigationView {
+                LoginBtnView(placeholder: "Sign Out", action: {
+                    authManager.signOut()
+                })
+                .navigationTitle("Profile")
+            }
+            .tabItem {
+                Label("Profile", systemImage: "person.fill")
+            }
+        }
     }
 }
 
