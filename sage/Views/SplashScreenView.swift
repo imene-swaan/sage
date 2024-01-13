@@ -14,9 +14,12 @@ struct SplashScreenView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 150, height: 150)
+            Text("Sage")
+                .foregroundColor(.white)
+                .font(.custom("Avenir", size: 25))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity) // Fill the entire screen
-        .background(Color(red: 0xBE / 0xFF, green: 0xE6 / 0xFF, blue: 0xCF / 0xFF)) // Hex color background
+        .background(Color(red: 77/255, green: 182/255, blue: 172/255)) // Hex color background
         .edgesIgnoringSafeArea(.all) // Ignore safe area to cover the whole screen
            
     }
