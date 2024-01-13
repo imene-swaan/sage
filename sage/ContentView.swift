@@ -13,11 +13,16 @@ struct ContentView: View {
     @EnvironmentObject var authManager: AuthenticationManager
         
     var body: some View {
-        if authManager.authState != .signedOut {
-            HomeView()
-        } else {
-            LoginView()
+        VStack {
+            if authManager.authState != .signedOut {
+                HomeView()
+                    .transition(.move(edge: .trailing))
+            } else {
+                LoginView()
+                    .transition(.move(edge: .trailing))
+            }
         }
+        .animation(.easeInOut(duration: 0.5), value: authManager.authState)
     }
 }
 

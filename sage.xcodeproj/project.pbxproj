@@ -21,6 +21,7 @@
 		5BC6C87F2B51CB1C003EFA89 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5BC6C87E2B51CB1C003EFA89 /* FirebaseAuth */; };
 		5BC6C8812B51D14F003EFA89 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC6C8802B51D14F003EFA89 /* HomeView.swift */; };
 		5BC6C8832B51D9B3003EFA89 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC6C8822B51D9B3003EFA89 /* LoginView.swift */; };
+		5BC6C8872B52C861003EFA89 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC6C8862B52C861003EFA89 /* LoadingView.swift */; };
 		9A4780002B4DE767008F704F /* sageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A477FFF2B4DE767008F704F /* sageApp.swift */; };
 		9A4780042B4DE768008F704F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A4780032B4DE768008F704F /* Assets.xcassets */; };
 		9A4780072B4DE768008F704F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A4780062B4DE768008F704F /* Preview Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		5BC6C87C2B51C947003EFA89 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		5BC6C8802B51D14F003EFA89 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5BC6C8822B51D9B3003EFA89 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		5BC6C8862B52C861003EFA89 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		9A477FFC2B4DE767008F704F /* sage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A477FFF2B4DE767008F704F /* sageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sageApp.swift; sourceTree = "<group>"; };
 		9A4780032B4DE768008F704F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,6 +109,27 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		5BC6C8842B52C4FE003EFA89 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5BC6C8802B51D14F003EFA89 /* HomeView.swift */,
+				5BC6C8822B51D9B3003EFA89 /* LoginView.swift */,
+				5B8DF0A22B4DFA4100D8FDD1 /* SplashScreenView.swift */,
+				5BC6C8862B52C861003EFA89 /* LoadingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5BC6C8852B52C53D003EFA89 /* ViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				5B39ADCC2B507CDE00273D7F /* Buttons */,
+				5B8DF0A42B4F374100D8FDD1 /* CountryCodePickerView.swift */,
+				5B0814D12B504723007EC17A /* LoginTextFieldView.swift */,
+			);
+			path = ViewComponents;
+			sourceTree = "<group>";
+		};
 		9A477FF32B4DE767008F704F = {
 			isa = PBXGroup;
 			children = (
@@ -130,19 +153,15 @@
 		9A477FFE2B4DE767008F704F /* sage */ = {
 			isa = PBXGroup;
 			children = (
+				5BC6C8852B52C53D003EFA89 /* ViewComponents */,
+				5BC6C8842B52C4FE003EFA89 /* Views */,
 				5BC6C87C2B51C947003EFA89 /* AuthenticationManager.swift */,
 				5B39ADD42B51B3D600273D7F /* ContentView.swift */,
 				9A477FFF2B4DE767008F704F /* sageApp.swift */,
-				5B8DF0A42B4F374100D8FDD1 /* CountryCodePickerView.swift */,
-				5B8DF0A22B4DFA4100D8FDD1 /* SplashScreenView.swift */,
-				5B0814D12B504723007EC17A /* LoginTextFieldView.swift */,
 				9A4780032B4DE768008F704F /* Assets.xcassets */,
-				5B39ADCC2B507CDE00273D7F /* Buttons */,
 				9A4780052B4DE768008F704F /* Preview Content */,
 				5B39ADCF2B50828D00273D7F /* GoogleService-Info.plist */,
 				5B39ADD72B51C30700273D7F /* Info.plist */,
-				5BC6C8802B51D14F003EFA89 /* HomeView.swift */,
-				5BC6C8822B51D9B3003EFA89 /* LoginView.swift */,
 			);
 			path = sage;
 			sourceTree = "<group>";
@@ -316,6 +335,7 @@
 				5BC6C8812B51D14F003EFA89 /* HomeView.swift in Sources */,
 				5B0814D22B504723007EC17A /* LoginTextFieldView.swift in Sources */,
 				5BC6C87D2B51C947003EFA89 /* AuthenticationManager.swift in Sources */,
+				5BC6C8872B52C861003EFA89 /* LoadingView.swift in Sources */,
 				9A4780002B4DE767008F704F /* sageApp.swift in Sources */,
 				5B39ADD52B51B3D600273D7F /* ContentView.swift in Sources */,
 				5B39ADCE2B507D5A00273D7F /* SignInWithAppleBtnView.swift in Sources */,

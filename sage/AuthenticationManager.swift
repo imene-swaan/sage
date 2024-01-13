@@ -63,11 +63,14 @@ class AuthenticationManager: ObservableObject {
 
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
+        
+        // Update to IOS 15:
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let rootViewController = windowScene.windows.first(where: { $0.isKeyWindow })?.rootViewController else {
+                return
+            }
 
-        // Assuming you have a UIWindow to present the view controller
-        if let window = UIApplication.shared.windows.first,
-           let rootViewController = window.rootViewController {
-            GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController) { [weak self] result, error in
+        GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController) { [weak self] result, error in
                 guard error == nil else {
                     // Handle error
                     return
@@ -82,7 +85,6 @@ class AuthenticationManager: ObservableObject {
                 // Handle the Firebase sign-in with credential
                 self?.signInWithFirebase(credential: credential)
             }
-        }
     }
     
     func signOut() {

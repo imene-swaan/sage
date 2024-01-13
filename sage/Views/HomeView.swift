@@ -9,32 +9,37 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var authManager: AuthenticationManager
+    @State private var showingSignOutAlert = false
     
     var body: some View {
         TabView {
             NavigationView {
                 LoginBtnView(placeholder: "Sign Out", action: {
-                    authManager.signOut()
+                    showingSignOutAlert.toggle()
                 })
                 .navigationTitle("Home")
+                .confirmationDialog("Are you sure you want to sign out?", 
+                                    isPresented: $showingSignOutAlert, titleVisibility: .visible) {
+                    Button("Sign Out", role: .destructive) {
+                        authManager.signOut()
+                    }
+                }
+                
             }
             .tabItem {
                 Label("Home", systemImage: "house.fill")
             }
             NavigationView {
-                LoginBtnView(placeholder: "Sign Out", action: {
-                    authManager.signOut()
-                })
-                .navigationTitle("Notifications")
+                Text("What you missed!")
+                    .font(.title)
+                
             }
             .tabItem {
                 Label("Notifications", systemImage: "bell.fill")
             }
             NavigationView {
-                LoginBtnView(placeholder: "Sign Out", action: {
-                    authManager.signOut()
-                })
-                .navigationTitle("Profile")
+                Text("Your profile!")
+                    .font(.title)
             }
             .tabItem {
                 Label("Profile", systemImage: "person.fill")
