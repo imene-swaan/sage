@@ -108,10 +108,6 @@ struct LoginView: View {
                 LoginBtnView(icon: "github", placeholder: "Continue with Github", action:{
                     print("github")
                 })
-                // Apple SignIn:
-                LoginBtnView(icon: "apple", placeholder: "Continue with Apple", action:{
-                    print("apple")
-                })
                 
                 
                 // Terms and Services, privacy Policy
