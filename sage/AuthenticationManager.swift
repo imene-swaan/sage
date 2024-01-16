@@ -19,6 +19,9 @@ enum AuthState {
 class AuthenticationManager: ObservableObject {
     @Published var user: User?
     @Published var authState = AuthState.signedOut
+    @Environment(\.presentationMode) var presentationMode
+    
+    var completion: (Result<AuthDataResult, Error>) -> Void
     
     /// 1.
     private var authStateHandle: AuthStateDidChangeListenerHandle!
@@ -54,6 +57,33 @@ class AuthenticationManager: ObservableObject {
                 self.authState = isAnonymous ? .authenticated : .signedIn
             } else {
                 self.authState = .signedOut
+            }
+        }
+    }
+    
+    func signInWithGithub() {
+        // Start the sign-in process
+        let provider = OAuthProvider(providerID: "github.com")
+        provider.scopes = ["user:email"] // Add additional scopes if needed
+        provider.customParameters = ["allow_signup": "false"]
+        
+        provider.getCredentialWith(nil) { credential, error in
+            if let error = error {
+                self.completion(.failure(error))
+                return
+            }
+            
+            if let credential = credential {
+                Auth.auth().signIn(with: credential) { authResult, error in
+                    if let error = error {
+                        self.completion(.failure(error))
+                    } else if let authResult = authResult {
+                        self.completion(.success(authResult))
+                    }
+                    
+                    // Dismiss the view controller after sign-in
+                    self.presentationMode.wrappedValue.dismiss()
+                }
             }
         }
     }
